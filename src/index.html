@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" href="css/main.css" />
+
+  <script src="js/scripts.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div class="general-container">
+
+    <div class="manage-widget" >
+      <div class="manage-widget-follow" onclick="fnAddFollowEvent()" >
+        Simular <b>FOLLOW</b>
+      </div>
+      <div class="manage-widget-sub" onclick="fnAddSubEvent()" >
+        Simular <b>SUB</b>
+      </div>
+    </div>
+
+    <hr class"line-break"> 
+
+    <div class="widget-preview" >
+      <div class="main-container"></div>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
+            <!-- SVG FOLLOW -->
+            <symbol id="icon-follow" viewBox="0 0 24 24" aria-labelledby="title-follow" aria-describedby="desc-follow">
+                <title id="title-follow">Follow</title>
+                <desc id="desc-follow">Follow</desc>
+                <path class="path-follow" stroke-width="1" stroke="#1956c6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 20l-7 -7a4 4 0 0 1 6.5 -6a.9 .9 0 0 0 1 0a4 4 0 0 1 6.5 6l-7 7" />
+                </path>
+            </symbol>
+
+            <!-- SVG SUB -->
+            <symbol id="icon-sub" viewBox="0 0 24 24" aria-labelledby="title-sub" aria-describedby="desc-sub">
+                <title id="title-sub">Sub</title>
+                <desc id="desc-Sub">Sub</desc>
+                <path class="path-sub" stroke-width="1" stroke="#673AB7" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" />
+                </path>
+            </symbol>
+      </svg>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

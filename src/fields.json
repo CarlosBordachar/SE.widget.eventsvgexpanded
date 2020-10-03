@@ -1,0 +1,21 @@
+{
+  "colorFollow": {
+    "type": "colorpicker",
+    "label": "Follower color",
+    "value": "#1956c6"
+  },
+  "colorSub": {
+    "type": "colorpicker",
+    "label": "Subscriber color",
+    "value": "#673AB7"
+  },
+  eventType": {
+    "type": "dropdown",
+    "label": Event type",
+    "value": "follow",
+    "options": {
+      "follow": "Follower",
+      "sub": "Subscriber"
+    }
+  }
+}
