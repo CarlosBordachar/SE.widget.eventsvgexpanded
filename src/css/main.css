@@ -5,7 +5,7 @@
 
 * {
     font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
+    /* color: #ffffff; */
     font-size: 14px;
     overflow: hidden;
 }
@@ -95,7 +95,7 @@
 
 .manage-widget > div {
     /*flex: 1 0 100px; */
-    flex:  auto; 
+    flex:  auto;
     background-color: #00800029;
     margin: 20px;
     padding: 10px;
