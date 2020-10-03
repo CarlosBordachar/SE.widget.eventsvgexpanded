@@ -1,6 +1,6 @@
 :root {
-  --followColor: #1956c6;
-  --subColor: #673AB7;
+  --colorFollow: #1956c6;
+  --colorSub: #673AB7;
 }
 
 * {
@@ -32,11 +32,11 @@
 }
 
 .path-follow {
-  stroke: var(--followColor);
+  stroke: var(--colorFollow);
 }
 
 .path-sub {
-  stroke: var(--subColor);
+  stroke: var(--colorSub);
 }
 
 
