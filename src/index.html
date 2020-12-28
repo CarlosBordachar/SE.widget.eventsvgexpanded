@@ -9,17 +9,22 @@
   <script src="js/scripts.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<body onload="fnOnLoad()">
 
   <div class="general-container">
-
+    
     <div class="manage-widget" >
-      <div class="manage-widget-follow" onclick="addFollowEvent()" >
+      <!--
+      <div class="manage-widget-follow" onclick="addEvent('follow')" >
         Simular <b>FOLLOW</b>
       </div>
-      <div class="manage-widget-sub" onclick="addSubEvent()" >
+      <div class="manage-widget-sub" onclick="addEvent('sub')" >
         Simular <b>SUB</b>
       </div>
+      <div class="manage-widget-cheer" onclick="addEvent('cheer')" >
+        Simular <b>CHEER</b>
+      </div> 
+      -->
     </div>
 
     <hr class"line-break"> 
@@ -28,22 +33,445 @@
       <div class="main-container"></div>
       
       <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <!-- SOURCE: https://tablericons.com/ -->
+
+            <!-- Orig: TEMPLATE -->
+            <symbol class="icon" id="icon-TEMPLATE" viewBox="0 0 24 24" aria-labelledby="title-TEMPLATE" aria-describedby="desc-TEMPLATE">
+                <title id="title-TEMPLATE">TEMPLATE</title>
+                <desc id="desc-TEMPLATE">TEMPLATE</desc>
+                <path class="path path-TEMPLATE" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M6 5h12l3 5l-8.5 9.5a0.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5" />
+                </path>
+            </symbol>
+
 
             <!-- SVG FOLLOW -->
-            <symbol id="icon-follow" viewBox="0 0 24 24" aria-labelledby="title-follow" aria-describedby="desc-follow">
+            <!-- Orig: Heart -->
+            <symbol class="icon" id="icon-follow" viewBox="0 0 24 24" aria-labelledby="title-follow" aria-describedby="desc-follow">
                 <title id="title-follow">Follow</title>
                 <desc id="desc-follow">Follow</desc>
-                <path class="path-follow" stroke-width="1" stroke="#1956c6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 20l-7 -7a4 4 0 0 1 6.5 -6a.9 .9 0 0 0 1 0a4 4 0 0 1 6.5 6l-7 7" />
+                <path class="path path-follow" stroke-width="1" stroke="#1956c6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 20l-7 -7a4 4 0 0 1 6.5 -6a.9 .9 0 0 0 1 0a4 4 0 0 1 6.5 6l-7 7" />
                 </path>
             </symbol>
 
+
             <!-- SVG SUB -->
-            <symbol id="icon-sub" viewBox="0 0 24 24" aria-labelledby="title-sub" aria-describedby="desc-sub">
+            <!-- Orig: Star -->
+<!--            <symbol class="icon" id="icon-sub" viewBox="0 0 24 24" aria-labelledby="title-sub" aria-describedby="desc-sub">
                 <title id="title-sub">Sub</title>
                 <desc id="desc-Sub">Sub</desc>
-                <path class="path-sub" stroke-width="1" stroke="#673AB7" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" />
+                <path class="path path-sub" stroke-width="1" stroke="#673AB7" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" />
+                </path>
+            </symbol> -->
+
+            <!-- SVG SUB -->
+            <!-- Orig: Star -->
+            <symbol class="icon" id="icon-sub" viewBox="0 0 24 24" aria-labelledby="title-sub" aria-describedby="desc-sub">
+                <title id="title-sub">Sub</title>
+                <desc id="desc-Sub">Sub</desc>
+                <path class="path path-sub" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 17.75l-6.172 3.245 1.179-6.873-4.993-4.867 6.9-1.002L12 2l3.086 6.253 6.9 1.002-4.993 4.867 1.179 6.873z" />
                 </path>
             </symbol>
+
+
+            <!-- SVG CHEER -->
+            <!-- Orig: Diamond -->
+            <symbol class="icon" id="icon-cheer" viewBox="0 0 24 24" aria-labelledby="title-cheer" aria-describedby="desc-cheer">
+                <title id="title-cheer">Cheer</title>
+                <desc id="desc-cheer">Cheer</desc>
+                <path class="path path-cheer" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M6 5h12l3 5l-8.5 9.5a0.7 .7 0 0 1 -1 0l-8.5 -9.5l3 -5" />
+                </path>
+            </symbol>
+
+
+            <!-- Orig: access-point -->
+            <symbol class="icon" id="icon-access-point" viewBox="0 0 24 24" aria-labelledby="title-access-point" aria-describedby="desc-access-point">
+                <title id="title-access-point">access-point</title>
+                <desc id="desc-access-point">access-point</desc>
+                <line class="path path-access-point" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="12" x2="12" y2="12.01" />
+                <path class="path path-access-point" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M14.828 9.172a4 4 0 0 1 0 5.656" />
+                <path class="path path-access-point" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M17.657 6.343a8 8 0 0 1 0 11.314" />
+                <path class="path path-access-point" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M9.168 14.828a4 4 0 0 1 0 -5.656" />
+                <path class="path path-access-point" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M6.337 17.657a8 8 0 0 1 0 -11.314" />
+            </symbol>
+
+
+            <!-- Orig: chart-radar -->
+            <symbol class="icon" id="icon-chart-radar" viewBox="0 0 24 24" aria-labelledby="title-chart-radar" aria-describedby="desc-chart-radar">
+                <title id="title-chart-radar">chart-radar</title>
+                <desc id="desc-chart-radar">chart-radar</desc>
+                <path class="path path-chart-radar" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 3l9.5 7l-3.5 11h-12l-3.5 -11z" />
+                <path class="path path-chart-radar" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7.5l5.5 4l-2.5 5.5h-6.5l-2 -5.5z" />
+                <path class="path path-chart-radar" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M2.5 10l9.5 3l9.5 -3" />
+                <path class="path path-chart-radar" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 3v10l6 8" />
+                <path class="path path-chart-radar" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M6 21l6 -8" />
+            </symbol>
+
+
+            <!-- Orig: crown -->
+            <symbol class="icon" id="icon-crown" viewBox="0 0 24 24" aria-labelledby="title-crown" aria-describedby="desc-crown">
+                <title id="title-crown">crown</title>
+                <desc id="desc-crown">crown</desc>
+                <path class="path path-crown" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 6l4 6l5 -4l-2 10h-14l-2 -10l5 4z" />
+                </path>
+            </symbol>
+
+
+            <!-- Orig: credit-card -->
+            <symbol class="icon" id="icon-credit-card" viewBox="0 0 24 24" aria-labelledby="title-credit-card" aria-describedby="desc-credit-card">
+                <title id="title-credit-card">credit-card</title>
+                <desc id="desc-credit-card">credit-card</desc>
+                <rect class="path path-credit-card" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="5" width="18" height="14" rx="3" />
+                <line class="path path-credit-card" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="10" x2="21" y2="10" />
+                <line class="path path-credit-card" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="15" x2="7.01" y2="15" />
+                <line class="path path-credit-card" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="11" y1="15" x2="13" y2="15" />
+            </symbol>
+
+
+            <!-- Orig: desktop -->
+            <symbol class="icon" id="icon-desktop" viewBox="0 0 24 24" aria-labelledby="title-desktop" aria-describedby="desc-desktop">
+                <title id="title-desktop">desktop</title>
+                <desc id="desc-desktop">desktop</desc>
+                <rect class="path path-desktop" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="4" width="18" height="12" rx="1" />
+                <line class="path path-desktop" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="20" x2="17" y2="20" />
+                <line class="path path-desktop" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="9" y1="16" x2="9" y2="20" />
+                <line class="path path-desktop" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="15" y1="16" x2="15" y2="20" />
+            </symbol>
+
+
+            <!-- Orig: device-tv -->
+            <symbol class="icon" id="icon-device-tv" viewBox="0 0 24 24" aria-labelledby="title-device-tv" aria-describedby="desc-device-tv">
+                <title id="title-device-tv">device-tv</title>
+                <desc id="desc-device-tv">device-tv</desc>
+                <rect class="path path-device-tv" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="7" width="18" height="13" rx="2" />
+                <polyline class="path path-device-tv" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" points="16 3 12 7 8 3" />
+            </symbol>
+
+
+            <!-- Orig: exchange -->
+            <symbol class="icon" id="icon-exchange" viewBox="0 0 24 24" aria-labelledby="title-exchange" aria-describedby="desc-exchange">
+                <title id="title-exchange">exchange</title>
+                <desc id="desc-exchange">exchange</desc>
+                <circle class="path path-exchange" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="5" cy="18" r="2" />
+                <circle class="path path-exchange" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="19" cy="6" r="2" />
+                <path class="path path-exchange" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M19 8v5a5 5 0 0 1 -5 5h-3l3 -3m0 6l-3 -3" />
+                <path class="path path-exchange" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M5 16v-5a5 5 0 0 1 5 -5h3l-3 -3m0 6l3 -3" />
+            </symbol>
+
+
+            <!-- Orig: git-pull-request -->
+            <symbol class="icon" id="icon-git-pull-request" viewBox="0 0 24 24" aria-labelledby="title-git-pull-request" aria-describedby="desc-git-pull-request">
+                <title id="title-git-pull-request">git-pull-request</title>
+                <desc id="desc-git-pull-request">git-pull-request</desc>
+                <circle class="path path-git-pull-request" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="6" cy="18" r="2" />
+                <circle class="path path-git-pull-request" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="6" cy="6" r="2" />
+                <circle class="path path-git-pull-request" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="18" cy="18" r="2" />
+                <line class="path path-git-pull-request" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="6" y1="8" x2="6" y2="16" />
+                <path class="path path-git-pull-request" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M11 6h5a2 2 0 0 1 2 2v8" />
+                <polyline class="path path-git-pull-request" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" points="14 9 11 6 14 3" />
+            </symbol>
+
+
+            <!-- Orig: glass -->
+            <symbol class="icon" id="icon-glass" viewBox="0 0 24 24" aria-labelledby="title-glass" aria-describedby="desc-glass">
+                <title id="title-glass">glass</title>
+                <desc id="desc-glass">glass</desc>
+                <line class="path path-glass" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="8" y1="21" x2="16" y2="21" />
+                <line class="path path-glass" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="15" x2="12" y2="21" />
+                <path class="path path-glass" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M16 4l1 6a5 5 0 0 1 -10 0l1 -6z" />
+            </symbol>
+
+
+            <!-- Orig: loader -->
+            <symbol class="icon" id="icon-loader" viewBox="0 0 24 24" aria-labelledby="title-loader" aria-describedby="desc-loader">
+                <title id="title-loader">loader</title>
+                <desc id="desc-loader">loader</desc>
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="6" x2="12" y2="3" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="16.25" y1="7.75" x2="18.4" y2="5.6" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="18" y1="12" x2="21" y2="12" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="16.25" y1="16.25" x2="18.4" y2="18.4" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="18" x2="12" y2="21" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7.75" y1="16.25" x2="5.6" y2="18.4" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="6" y1="12" x2="3" y2="12" />
+                <line class="path path-loader" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7.75" y1="7.75" x2="5.6" y2="5.6" />
+            </symbol>
+
+
+            <!-- Orig: plug -->
+            <symbol class="icon" id="icon-plug" viewBox="0 0 24 24" aria-labelledby="title-plug" aria-describedby="desc-plug">
+                <title id="title-plug">plug</title>
+                <desc id="desc-plug">plug</desc>
+                <path class="path path-plug" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M7 7h10v6a3 3 0 0 1 -3 3h-4a3 3 0 0 1 -3 -3v-6" />
+                <line class="path path-plug" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="9" y1="3" x2="9" y2="7" />
+                <line class="path path-plug" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="15" y1="3" x2="15" y2="7" />
+                <path class="path path-plug" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 16v2a2 2 0 0 0 2 2h3" />
+            </symbol>
+
+
+            <!-- Orig: radioactive -->
+            <symbol class="icon" id="icon-radioactive" viewBox="0 0 24 24" aria-labelledby="title-radioactive" aria-describedby="desc-radioactive">
+                <title id="title-radioactive">radioactive</title>
+                <desc id="desc-radioactive">radioactive</desc>
+                <path class="path path-radioactive" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M13.5 14.6l3 5.19a9 9 0 0 0 4.5 -7.79h-6a3 3 0 0 1 -1.5 2.6" />
+                <path class="path path-radioactive" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M13.5 9.4l3 -5.19a9 9 0 0 0 -9 0l3 5.19a3 3 0 0 1 3 0" />
+                <path class="path path-radioactive" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M10.5 14.6l-3 5.19a9 9 0 0 1 -4.5 -7.79h6a3 3 0 0 0 1.5 2.6" />
+            </symbol>
+
+
+            <!-- Orig: replace -->
+            <symbol class="icon" id="icon-replace" viewBox="0 0 24 24" aria-labelledby="title-replace" aria-describedby="desc-replace">
+                <title id="title-replace">replace</title>
+                <desc id="desc-replace">replace</desc>
+                <rect class="path path-replace" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="3" width="6" height="6" rx="1" />
+                <rect class="path path-replace" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="15" y="15" width="6" height="6" rx="1" />
+                <path class="path path-replace" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3" />
+                <path class="path path-replace" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3" />
+            </symbol>
+
+
+            <!-- Orig: repeat -->
+            <symbol class="icon" id="icon-repeat" viewBox="0 0 24 24" aria-labelledby="title-repeat" aria-describedby="desc-repeat">
+                <title id="title-repeat">repeat</title>
+                <desc id="desc-repeat">repeat</desc>
+                <path class="path path-repeat" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M4 12v-3a3 3 0 0 1 3 -3h13m-3 -3l3 3l-3 3" />
+                <path class="path path-repeat" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M20 12v3a3 3 0 0 1 -3 3h-13m3 3l-3 -3l3 -3" />
+            </symbol>
+
+
+            <!-- Orig: refresh -->
+            <symbol class="icon" id="icon-refresh" viewBox="0 0 24 24" aria-labelledby="title-refresh" aria-describedby="desc-refresh">
+                <title id="title-refresh">refresh</title>
+                <desc id="desc-refresh">refresh</desc>
+                <path class="path path-refresh" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                <path class="path path-refresh" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+            </symbol>
+
+
+            <!-- Orig: route -->
+            <symbol class="icon" id="icon-route" viewBox="0 0 24 24" aria-labelledby="title-route" aria-describedby="desc-route">
+                <title id="title-route">route</title>
+                <desc id="desc-route">route</desc>
+                <circle class="path path-route" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="6" cy="19" r="2" />
+                <circle class="path path-route" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="18" cy="5" r="2" />
+                <path class="path path-route" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 19h4.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h3.5" />
+            </symbol>
+
+
+            <!-- Orig: shape -->
+            <symbol class="icon" id="icon-shape" viewBox="0 0 24 24" aria-labelledby="title-shape" aria-describedby="desc-shape">
+                <title id="title-shape">shape</title>
+                <desc id="desc-shape">shape</desc>
+                <circle class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="5" cy="5" r="2" />
+                <circle class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="19" cy="5" r="2" />
+                <circle class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="5" cy="19" r="2" />
+                <circle class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="19" cy="19" r="2" />
+                <line class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="5" y1="7" x2="5" y2="17" />
+                <line class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="5" x2="17" y2="5" />
+                <line class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="19" x2="17" y2="19" />
+                <line class="path path-shape" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="19" y1="7" x2="19" y2="17" />
+            </symbol>
+
+
+            <!-- Orig: sitemap -->
+            <symbol class="icon" id="icon-sitemap" viewBox="0 0 24 24" aria-labelledby="title-sitemap" aria-describedby="desc-sitemap">
+                <title id="title-sitemap">sitemap</title>
+                <desc id="desc-sitemap">sitemap</desc>
+                <rect class="path path-sitemap" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="15" width="6" height="6" rx="2" />
+                <rect class="path path-sitemap" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="15" y="15" width="6" height="6" rx="2" />
+                <rect class="path path-sitemap" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="9" y="3" width="6" height="6" rx="2" />
+                <path class="path path-sitemap" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
+                <line class="path path-sitemap" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="9" x2="12" y2="12" />
+            </symbol>
+
+
+            <!-- Orig: social -->
+            <symbol class="icon" id="icon-social" viewBox="0 0 24 24" aria-labelledby="title-social" aria-describedby="desc-social">
+                <title id="title-social">social</title>
+                <desc id="desc-social">social</desc>
+                <circle class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="5" r="2" />
+                <circle class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="5" cy="19" r="2" />
+                <circle class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="19" cy="19" r="2" />
+                <circle class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="14" r="3" />
+                <line class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="7" x2="12" y2="11" />
+                <line class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="6.7" y1="17.8" x2="9.5" y2="15.8" />
+                <line class="path path-social" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="17.3" y1="17.8" x2="14.5" y2="15.8" />
+            </symbol>
+
+
+            <!-- Orig: speakerphone -->
+            <symbol class="icon" id="icon-speakerphone" viewBox="0 0 24 24" aria-labelledby="title-speakerphone" aria-describedby="desc-speakerphone">
+                <title id="title-speakerphone">speakerphone</title>
+                <desc id="desc-speakerphone">speakerphone</desc>
+                <path class="path path-speakerphone" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M18 8a3 3 0 0 1 0 6" />
+                <path class="path path-speakerphone" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M10 8v11a1 1 0 0 1 -1 1h-1a1 1 0 0 1 -1 -1v-5" />
+                <path class="path path-speakerphone" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 8h0l4.524 -3.77a0.9 .9 0 0 1 1.476 .692v12.156a0.9 .9 0 0 1 -1.476 .692l-4.524 -3.77h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h8" />
+            </symbol>
+
+
+            <!-- Orig: tournament -->
+            <symbol class="icon" id="icon-tournament" viewBox="0 0 24 24" aria-labelledby="title-tournament" aria-describedby="desc-tournament">
+                <title id="title-tournament">tournament</title>
+                <desc id="desc-tournament">tournament</desc>
+                <path class="path path-tournament" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M5 6h3a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-3" />
+                <path class="path path-tournament" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M5 14h3a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-3" />
+                <path class="path path-tournament" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M9 8h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4" />
+                <line class="path path-tournament" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="14" y1="12" x2="19" y2="12" />
+            </symbol>
+
+
+            <!-- Orig: vector-triangle -->
+            <symbol class="icon" id="icon-vector-triangle" viewBox="0 0 24 24" aria-labelledby="title-vector-triangle" aria-describedby="desc-vector-triangle">
+                <title id="title-vector-triangle">vector-triangle</title>
+                <desc id="desc-vector-triangle">vector-triangle</desc>
+                <rect class="path path-vector-triangle" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="10" y="4" width="4" height="4" rx="1" />
+                <rect class="path path-vector-triangle" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="17" width="4" height="4" rx="1" />
+                <rect class="path path-vector-triangle" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="17" y="17" width="4" height="4" rx="1" />
+                <line class="path path-vector-triangle" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="6.5" y1="17.1" x2="11.5" y2="8" />
+                <line class="path path-vector-triangle" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="17.5" y1="17.1" x2="12.5" y2="8" />
+                <line class="path path-vector-triangle" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="19" x2="17" y2="19" />
+            </symbol>
+
+
+            <!-- Orig: vector -->
+            <symbol class="icon" id="icon-vector" viewBox="0 0 24 24" aria-labelledby="title-vector" aria-describedby="desc-vector">
+                <title id="title-vector">vector</title>
+                <desc id="desc-vector">vector</desc>
+                <rect class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="3" width="4" height="4" rx="1" />
+                <rect class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="17" y="3" width="4" height="4" rx="1" />
+                <rect class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="17" y="17" width="4" height="4" rx="1" />
+                <rect class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="17" width="4" height="4" rx="1" />
+                <line class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="5" y1="7" x2="5" y2="17" />
+                <line class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="19" y1="7" x2="19" y2="17" />
+                <line class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="5" x2="17" y2="5" />
+                <line class="path path-vector" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="7" y1="19" x2="17" y2="19" />
+            </symbol>
+
+
+            <!-- Orig: virus -->
+            <symbol class="icon" id="icon-virus" viewBox="0 0 24 24" aria-labelledby="title-virus" aria-describedby="desc-virus">
+                <title id="title-virus">virus</title>
+                <desc id="desc-virus">virus</desc>
+                <circle class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="5" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(45 12 12)" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(90 12 12)" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(135 12 12)" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(180 12 12)" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(225 12 12)" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(270 12 12)" />
+                <path class="path path-virus" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 7v-4m-1 0h2" transform="rotate(315 12 12)" />
+            </symbol>
+
+
+
+
+
+            <!-- Orig: artboard -->
+            <symbol class="icon" id="icon-artboard" viewBox="0 0 24 24" aria-labelledby="title-artboard" aria-describedby="desc-artboard">
+                <title id="title-artboard">artboard</title>
+                <desc id="desc-artboard">artboard</desc>
+                <rect class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="8" y="8" width="8" height="8" rx="1" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="8" x2="4" y2="8" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="16" x2="4" y2="16" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="8" y1="3" x2="8" y2="4" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="16" y1="3" x2="16" y2="4" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="20" y1="8" x2="21" y2="8" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="20" y1="16" x2="21" y2="16" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="8" y1="20" x2="8" y2="21" />
+                <line class="path path-artboard" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="16" y1="20" x2="16" y2="21" />
+            </symbol>
+
+
+            <!-- Orig: aspect-ratio -->
+            <symbol class="icon" id="icon-aspect-ratio" viewBox="0 0 24 24" aria-labelledby="title-aspect-ratio" aria-describedby="desc-aspect-ratio">
+                <title id="title-aspect-ratio">aspect-ratio</title>
+                <desc id="desc-aspect-ratio">aspect-ratio</desc>
+                <rect class="path path-aspect-ratio" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x="3" y="5" width="18" height="14" rx="2" />
+                <path class="path path-aspect-ratio" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M7 12v-3h3" />
+                <path class="path path-aspect-ratio" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M17 12v3h-3" />
+            </symbol>
+
+
+            <!-- Orig: atom-2 -->
+            <symbol class="icon" id="icon-atom-2" viewBox="0 0 24 24" aria-labelledby="title-atom-2" aria-describedby="desc-atom-2">
+                <title id="title-atom-2">atom-2</title>
+                <desc id="desc-atom-2">atom-2</desc>
+                <circle class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="3" />
+                <line class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="12" y1="21" x2="12" y2="21.01" />
+                <line class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="9" x2="3" y2="9.01" />
+                <line class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="21" y1="9" x2="21" y2="9.01" />
+                <path class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M8 20.1a9 9 0 0 1 -5 -7.1" />
+                <path class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M16 20.1a9 9 0 0 0 5 -7.1" />
+                <path class="path path-atom-2" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M6.2 5a9 9 0 0 1 11.4 0" />
+            </symbol>
+
+
+            <!-- Orig: bell-ringing -->
+            <symbol class="icon" id="icon-bell-ringing" viewBox="0 0 24 24" aria-labelledby="title-bell-ringing" aria-describedby="desc-bell-ringing">
+                <title id="title-bell-ringing">bell-ringing</title>
+                <desc id="desc-bell-ringing">bell-ringing</desc>
+                <path class="path path-bell-ringing" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
+                <path class="path path-bell-ringing" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M9 17v1a3 3 0 0 0 6 0v-1" />
+                <path class="path path-bell-ringing" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727" />
+                <path class="path path-bell-ringing" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727" />
+            </symbol>
+
+
+            <!-- Orig: bulb -->
+            <symbol class="icon" id="icon-bulb" viewBox="0 0 24 24" aria-labelledby="title-bulb" aria-describedby="desc-bulb">
+                <title id="title-bulb">bulb</title>
+                <desc id="desc-bulb">bulb</desc>
+                <path class="path path-bulb" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+                <path class="path path-bulb" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+                <line class="path path-bulb" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="9.7" y1="17" x2="14.3" y2="17" />
+            </symbol>
+
+
+            <!-- Orig: cast -->
+            <symbol class="icon" id="icon-cast" viewBox="0 0 24 24" aria-labelledby="title-cast" aria-describedby="desc-cast">
+                <title id="title-cast">cast</title>
+                <desc id="desc-cast">cast</desc>
+                <line class="path path-cast" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" x1="3" y1="19" x2="3.01" y2="19" />
+                <path class="path path-cast" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M7 19a4 4 0 0 0 -4 -4" />
+                <path class="path path-cast" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M11 19a8 8 0 0 0 -8 -8" />
+                <path class="path path-cast" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M15 19h3a3 3 0 0 0 3 -3v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -2.8 2" />
+            </symbol>
+
+
+            <!-- Orig: flame -->
+            <symbol class="icon" id="icon-flame" viewBox="0 0 24 24" aria-labelledby="title-flame" aria-describedby="desc-flame">
+                <title id="title-flame">flame</title>
+                <desc id="desc-flame">flame</desc>
+                <path class="path path-flame" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.762 4.383 -2.989 5.642c-1.226 1.26 -2.011 2.598 -2.011 4.358a6 6 0 1 0 12 0c0 -1.532 -.77 -2.94 -1.714 -4c-1.786 3 -3.077 3 -4.286 2z" />
+            </symbol>
+
+            <!-- Orig: git-compare -->
+            <symbol class="icon" id="icon-git-compare" viewBox="0 0 24 24" aria-labelledby="title-git-compare" aria-describedby="desc-git-compare">
+                <title id="title-git-compare">git-compare</title>
+                <desc id="desc-git-compare">git-compare</desc>
+                <circle class="path path-git-compare" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="6" cy="6" r="2" />
+                <circle class="path path-git-compare" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="18" cy="18" r="2" />
+                <path class="path path-git-compare" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M11 6h5a2 2 0 0 1 2 2v8" />
+                <polyline class="path path-git-compare" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" points="14 9 11 6 14 3" />
+                <path class="path path-git-compare" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M13 18h-5a2 2 0 0 1 -2 -2v-8" />
+                <polyline class="path path-git-compare" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" points="10 15 13 18 10 21" />
+            </symbol>
+
+            <!-- Orig: thumb-up -->
+            <symbol class="icon" id="icon-thumb-up" viewBox="0 0 24 24" aria-labelledby="title-thumb-up" aria-describedby="desc-thumb-up">
+                <title id="title-thumb-up">thumb-up</title>
+                <desc id="desc-thumb-up">thumb-up</desc>
+                <path class="path path-thumb-up" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+            </symbol>
+
+            <!-- Orig: view-360 -->
+            <symbol class="icon" id="icon-view-360" viewBox="0 0 24 24" aria-labelledby="title-view-360" aria-describedby="desc-view-360">
+                <title id="title-view-360">view-360</title>
+                <desc id="desc-view-360">view-360</desc>
+                <circle class="path path-view-360" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" r="9" />
+                <ellipse class="path path-view-360" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" rx="4" ry="9" />
+                <ellipse class="path path-view-360" stroke-width="1" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="12" rx="4" ry="9" transform="rotate(90 12 12)" />
+            </symbol>
+
       </svg>
 
     </div>
