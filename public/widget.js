@@ -1,12 +1,7 @@
-let includeFollowers = true,
-    includeSubs = true/*,
-    includeRedemptions = true,
-    includeHosts = true,
-    includeRaids = true,
-    includeTips = true,
-    includeCheers = true*/;
-
-let totalEvents = 0;
+let fieldData,
+    eventName,
+    iconName,
+    totalEvents = 0;
 
 window.addEventListener('onEventReceived', function (obj) {
     if (!obj.detail.event) {
@@ -18,55 +13,28 @@ window.addEventListener('onEventReceived', function (obj) {
     const listener = obj.detail.listener.split("-")[0];
     const event = obj.detail.event;
 
-    if (listener === 'follower') {
-        if (includeFollowers) {
-            addFollowEvent();
-        }
-    } else if (listener === 'subscriber') {
-        if (includeSubs) {
-            addSubEvent();
-        }
-    } /*else if (listener === 'redemption') {
-        if (includeRedemptions) {
-            addRedemptionEvent();
-        }
-    } else if (listener === 'host') {
-        if (includeHosts) {
-            addHostEvent();
-        }
-    } else if (listener === 'raid') {
-        if (includeRaids) {
-            addRaidEvent();
-        }
-    } else if (listener === 'cheer') {
-        if (includeCheers) {
-            addCheerEvent();
-        }
-    } else if (listener === 'tip') {
-        if (includeTips) {
-            addTipEvent();
-        }
-    }*/
+    if(eventName == listener) {
+        showEvent();
+    }        
 });
 
-function addFollowEvent() {
-    totalEvents += 1;    
-    let element = `
-    <svg class="icon icon-follow" id="icon-follow-${totalEvents}">
-         <use xlink:href="#icon-follow"></use>
-    </svg>`;
-    
-    $('.main-container').empty();
-    $('.main-container').append(element);
-}
+window.addEventListener('onWidgetLoad', function (obj) {
+    fieldData = obj.detail.fieldData;
+    eventName = fieldData.eventName;
+    iconName = fieldData.iconName;
+});
 
-function addSubEvent() {
-    totalEvents += 1;    
+function showEvent() {
+    totalEvents += 1;
+    const event = eventName;
+    const icon = iconName;
+  
+
     let element = `
-    <svg class="icon icon-sub" id="icon-sub-${totalEvents}">
-         <use xlink:href="#icon-sub"></use>
+    <svg class="icon-cls icon-cls-${event}" id="icon-${event}-${totalEvents}">
+         <use xlink:href="#icon-${icon}"></use>
     </svg>`;
-    
+    console.log(element);
     $('.main-container').empty();
     $('.main-container').append(element);
 }

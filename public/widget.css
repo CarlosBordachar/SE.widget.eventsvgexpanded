@@ -1,38 +1,34 @@
+:root {
+  --color-follow: #1956c6;
+  --color-sub: #673AB7;
+  --color-redemption: #bac619;
+  --color-host: #05b6ab;
+  --color-raid: #05b6ab;
+  --color-cheer: #a905b6;
+  --color-tip: #c61919;
+}
+
 * {
     font-family: 'Montserrat', sans-serif;
+   /*color: #ffffff; */
     font-size: 14px;
     overflow: hidden;
 }
 
 .main-container {
-    /* width: 500px; */
+    /*width: 500px;*/
     height: 100%;
 }
 
-.icon-follow {
+.icon-cls {
     width: 100%;
     height: 100%;
     transform: scale(0);
-    opacity: 0.5;
+    opacity: 0;
     animation: scale-in-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
 }
 
-.icon-sub {
-    width: 100%;
-    height: 100%;
-    transform: scale(0);
-    opacity: 0.5;
-    animation: scale-in-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1;
-}
-
-.path-follow {
-  stroke: {{colorFollow}};
-}
-
-.path-sub {
-  stroke: {{colorSub}};
-}
-
+.icon-cls * { stroke: {{colorIcon}}; }
 
 /**
  * ----------------------------------------
@@ -43,16 +39,12 @@
   0% {
     -webkit-transform: scale(0);
             transform: scale(0);
-    /*opacity: 1;*/
-  }
-  99% {
-    -webkit-transform: scale(6);
-            transform: scale(6);
-    opacity: 1;
+    opacity: 0.5;
   }
   100% {
-    -webkit-transform: scale(7);
-            transform: scale(7);
+    -webkit-transform: scale(4);
+            transform: scale(4);
+     opacity: 0;
      display: none;
   }
 }
