@@ -1,19 +1,3 @@
-let includeFollowers = true,
-    includeSubs = true,
-    includeRedemptions = true,
-    includeHosts = true,
-    includeRaids = true,
-    includeTips = true,
-    includeCheers = true;
-
-let followIcon = 'follow',
-    subIcon = 'sub',
-    cheerIcon = 'cheer',
-    redemptionIcon = 'redemption',
-    hostIcon = 'host',
-    raidIcon = 'raid',
-    tipIcon = 'tip';
-
 let fieldData,
     parameters,
     totalEvents = 0;
@@ -28,78 +12,42 @@ window.addEventListener('onEventReceived', function (obj) {
     const listener = obj.detail.listener.split("-")[0];
     const event = obj.detail.event;
 
-    let result = parameters
-        .filter(function(item) { return item.event == listener; });
-           
-    if(result && result.active)
-        addEvent(result.event, result.icon, result.defaultIcon);
-
-    /*
-    if (listener === 'follower') {
-        if (includeFollowers) {
-            addEvent(followIcon);
-        }
-    } else if (listener === 'subscriber') {
-        if (includeSubs) {
-            addEvent(subIcon);
-        }
-    } else if (listener === 'redemption') {
-        if (includeRedemptions) {
-            addEvent(redemptionIcon);
-        }
-    } else if (listener === 'host') {
-        if (includeHosts) {
-            addEvent(hostIcon);
-        }
-    } else if (listener === 'raid') {
-        if (includeRaids) {
-            addEvent(raidIcon);
-        }
-    } else if (listener === 'cheer') {
-        if (includeCheers) {
-            addEvent(cheerIcon);
-        }
-    } else if (listener === 'tip') {
-        if (includeTips) {
-            addEvent(tipIcon);
-        }
-    }
-    */
+    if(parameters.eventName == listener) {
+        addEvent(parameters.eventName, parameters.iconName);
+    }        
 });
 
 window.addEventListener('onWidgetLoad', function (obj) {
     fieldData = obj.detail.fieldData;
-    loadWidget();
+    parameters = getParameters();
 });
 
 function getParameters() {
     var result = 
     {
+        eventName: fieldData.eventName,
+        iconName: fieldData.iconName,
+        colorIcon: fieldData.colorIcon,
+        /* ITEMS is only for test */
         items: [
-             { event: "follower",   defaultIcon:"follow",    active: fieldData.includeFollowers == "yes",   icon: fieldData.iconFollowers,   color: fieldData.colorFollowers, }
-            ,{ event: "subscriber", defaultIcon:"sub",       active: fieldData.includeSubs == "yes",        icon: fieldData.iconSubs,        color: fieldData.colorSubs, }
-            ,{ event: "redemption", defaultIcon:"artboard",  active: fieldData.includeRedemptions == "yes", icon: fieldData.iconRedemptions, color: fieldData.colorRedemptions, }
-            ,{ event: "host",       defaultIcon:"device-tv", active: fieldData.includeHosts == "yes",       icon: fieldData.iconHosts,       color: fieldData.colorHosts, }
-            ,{ event: "raid",       defaultIcon:"view-360",  active: fieldData.includeRaids == "yes",       icon: fieldData.iconRaids,       color: fieldData.colorRaids, }
-            ,{ event: "cheer",      defaultIcon:"cheer",     active: fieldData.includeCheers == "yes",      icon: fieldData.iconCheers,      color: fieldData.colorCheers, }
-            ,{ event: "tip",        defaultIcon:"loader",    active: fieldData.includeTips == "yes",        icon: fieldData.iconTips,        color: fieldData.colorTips, }]
+             { event: "follower",   icon:"heart"     }
+            ,{ event: "subscriber", icon:"star"      }
+            ,{ event: "redemption", icon:"artboard"  }
+            ,{ event: "host",       icon:"device-tv" }
+            ,{ event: "raid",       icon:"view-360"  }
+            ,{ event: "cheer",      icon:"diamond"   }
+            ,{ event: "tip",        icon:"loader"    }]
     };
 
     return result;
 }
 
-function loadWidget() {
-    parameters = getParameters();
-}
-
-function addEvent(eventName, defaultIcon, iconName) {
+function addEvent(eventName, iconName) {
     totalEvents += 1;
-    let icon = defaultIcon;
-    if(iconName) icon = iconName;
-    
+
     let element = `
     <svg class="icon-cls icon-cls-${eventName}" id="icon-${eventName}-${totalEvents}">
-         <use xlink:href="#icon-${icon}"></use>
+         <use xlink:href="#icon-${iconName}"></use>
     </svg>`;
     
     $('.main-container').empty();
@@ -109,7 +57,7 @@ function addEvent(eventName, defaultIcon, iconName) {
 
 ///*** Functions only for test page ***///
 function fnOnLoad() {
-    let eventsName = ['follow','sub ','cheer','access-point','chart-radar','crown',
+    let eventsName = ['heart','star ','diamond','access-point','chart-radar','crown',
         'credit-card','desktop','device-tv','exchange','git-pull-request','glass',
         'loader','plug','radioactive','replace','repeat','refresh','route','shape',
         'sitemap','social','speakerphone','tournament','vector-triangle','vector','virus',
@@ -118,7 +66,7 @@ function fnOnLoad() {
 
     eventsName.forEach(function(item, index, array) {
         let element = 
-            `<div class="manage-widget-${item}" onclick="addEvent('${item}', '${item}', '${item}')" >
+            `<div class="manage-widget-${item}" onclick="addEvent('${item}', '${item}')" >
                 Simular <b>${item}</b>
             </div>`;
 
@@ -130,11 +78,10 @@ function fnOnLoad() {
     let params = getParameters();
     params.items.forEach(function(item, index, array) {
         let el =
-            `<div class="manage-widget-${item.event}" onclick="addEvent('${item.event}', '${item.defaultIcon}')" >
+            `<div class="manage-widget-${item.event}" onclick="addEvent('${item.event}', '${item.icon}')" >
                 Simular Default <b>${item.event}</b>
             </div>`;
 
          $('.manage-widget').append(el);
     })     
 }
-

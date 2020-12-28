@@ -1,75 +1,65 @@
 {
-  "includeFollowers": {
+  "eventName": {
     "type": "dropdown",
-    "label": "Display followers:",
-    "value": "yes",
+    "label": "Event:",
+    "value": "follower",
     "options": {
-      "yes": "Yes",
-      "no": "No"
+      "follower": "Follower",
+      "subscriber": "Subscriber",
+      "cheer": "Cheer",
+      "tip": "Tip",
+      "host": "Host",
+      "raid": "Raid",
+      "redemption": "Redemption"
     }
   },
-  "colorFollow": {
+  "iconName": {
+    "type": "dropdown",
+    "label": "Icon:",
+    "value": "heart",
+    "options": {
+      "heart": "Heart (Follow)",
+      "star": "Star (Subscribe)",
+      "diamond": "Diamond (Cheer)",
+      "loader": "Loader (Tip)",
+      "device-tv": "Device-tv (Host)",
+      "view-360": "View-360 (Raid)",
+      "artboard": "Artboard (Redemption)",
+      "access-point": "Access-point",
+      "aspect-ratio": "Aspect-ratio",
+      "atom-2": "Atom-2",
+      "bell-ringing": "Bell-ringing",
+      "bulb": "Bulb",
+      "cast": "Cast",
+      "chart-radar": "Chart-radar",
+      "crown": "Crown",
+      "credit-card": "Credit-card",
+      "desktop": "Desktop",
+      "exchange": "Exchange",
+      "flame": "Flame",
+      "git-compare": "Git-compare",
+      "git-pull-request": "Git-pull-request",
+      "glass": "Glass",
+      "plug": "Plug",
+      "radioactive": "Radioactive",
+      "replace": "Replace",
+      "repeat": "Repeat",
+      "refresh": "Refresh",
+      "route": "Route",
+      "shape": "Shape",
+      "sitemap": "Sitemap",
+      "social": "Social",
+      "speakerphone": "Speakerphone",
+      "thumb-up": "Thumb-up",
+      "tournament": "Tournament",
+      "vector-triangle": "Vector-triangle",
+      "vector": "Vector",
+      "virus": "Virus"
+    }
+  },
+  "colorIcon": {
     "type": "colorpicker",
-    "label": "Follower color:",
+    "label": "color:",
     "value": "#1956c6"
-  },
-  "includeSubs": {
-    "type": "dropdown",
-    "label": "Display subscribers:",
-    "value": "yes",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    }
-  },
-  "colorSub": {
-    "type": "colorpicker",
-    "label": "Subscriber color:",
-    "value": "#673AB7"
-  },
-  "includeRedemptions": {
-    "type": "dropdown",
-    "label": "Display redemptions:",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    }
-  },
-  "includeHosts": {
-    "type": "dropdown",
-    "label": "Display hosts:",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    }
-  },
-  "includeRaids": {
-    "type": "dropdown",
-    "label": "Display raids:",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    }
-  },
-  "includeTips": {
-    "type": "dropdown",
-    "label": "Display tips:",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    }
-  },
-  "includeCheers": {
-    "type": "dropdown",
-    "label": "Display cheers:",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    }
   }
 }
