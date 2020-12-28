@@ -32,7 +32,7 @@ window.addEventListener('onEventReceived', function (obj) {
         .filter(function(item) { return item.event == listener; });
            
     if(result && result.active)
-        addEvent(result.icon);
+        addEvent(result.event, result.icon, result.defaultIcon);
 
     /*
     if (listener === 'follower') {
@@ -98,7 +98,7 @@ function addEvent(eventName, defaultIcon, iconName) {
     if(iconName) icon = iconName;
     
     let element = `
-    <svg class="icon icon-cls-${eventName}" id="icon-${eventName}-${totalEvents}">
+    <svg class="icon-cls icon-cls-${eventName}" id="icon-${eventName}-${totalEvents}">
          <use xlink:href="#icon-${icon}"></use>
     </svg>`;
     
